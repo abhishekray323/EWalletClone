@@ -1,6 +1,7 @@
 package com.example.User.exceptionHandler;
 
 import com.example.User.customExceptions.InvalidJwtException;
+import com.example.User.customExceptions.InvalidRefreshTokenException;
 import com.example.User.customExceptions.UserAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +58,21 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleInvalidJwt(InvalidJwtException ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("error", "INVALID_JWT");
+        body.put("message", "Invalid JWT token");
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
+    }
+
+    /**
+     * Handles InvalidRefreshTokenException and returns a response with status 401 Unauthorized.
+     *
+     * @param ex the exception that was thrown
+     * @return a ResponseEntity containing the error details
+     */
+    @ExceptionHandler(InvalidRefreshTokenException.class)
+    public ResponseEntity<?> handleInvalidRefreshToken(InvalidRefreshTokenException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("error", "INVALID_REFRESH_TOKEN");
         body.put("message", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);

@@ -71,11 +71,11 @@ public class SecurityConfiguration {
 
         http
                     .csrf(csrf -> csrf
-                                    .ignoringRequestMatchers("/api/users/register", "/login", "/api/users/login")
+                                    .ignoringRequestMatchers("/api/users/register", "/login", "/api/users/login", "/api/users/refresh")
                     )
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers("/", "/login", "/error", "/error/**", "/favicon.ico", "/logout",
-                                    "/api/users/register", "/api/users/login", "/public/**").permitAll()
+                                    "/api/users/register", "/api/users/login", "/api/users/refresh", "/public/**").permitAll()
                             .anyRequest().authenticated()
                     )
 //                    .formLogin(form -> form

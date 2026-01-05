@@ -9,6 +9,10 @@ Here are some of the key features of EWallet Clone:
 
 ✅ User Registration & Login (Spring Security, OAuth2)
 
+✅ JWT-based access tokens with **secure refresh tokens**  
+- Refresh tokens are stored **hashed with SHA-256** (using `java.security.MessageDigest`)  
+- A scheduled job runs daily to **delete refresh tokens 30 days after they are revoked or expired**
+
 ✅ KYC Verification Endpoint
 
 ✅ Wallet Creation & Balance Management
